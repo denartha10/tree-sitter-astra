@@ -13,7 +13,7 @@ ASTRA stands for AgentSpeak(TR) Agents and is an Agent-Oriented Programming Lang
 
 ## Installation Guide
 
-- [Installation Guide](../INSTALLATION_GUIDE.md)
+- [Installation Guide](https://github.com/denartha10/tree-sitter-astra/blob/main/INSTALLATION_GUIDE.md))
 
 ## References
 
