@@ -11,6 +11,10 @@ A tree-sitter parser for the Astra programming Language
 
 ASTRA stands for AgentSpeak(TR) Agents and is an Agent-Oriented Programming Language developed by researchers at [University College Dublin](https://www.ucd.ie/). It is a combination of the AgentSpeak(L) programming language proposed by Arnund Rao in 1996 and the Teleo Reactive programming language created by Nils Nilson in 1994. It is designed to be familiar to programmers of C-style languages and is built on the Java Programming Language.
 
+## Installation Guide
+
+- [Installation Guide](../INSTALLATION_GUIDE.md)
+
 ## References
 
 - [Astra Language Docs](https://guide.astralanguage.com/en/latest/)
