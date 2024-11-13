@@ -4,19 +4,47 @@ Follow the steps below to install and configure the Astra highlights plugin for 
 
 ### Step 1: Add Filetype Association
 
-First, add the `.astra` file extension to Neovim's filetype detection:
+First, add the `.astra` file extension to Neovim's filetype detection. In lazyvim you can add this as the config field in a lazvim plugin table. The reason I chose to include it here is it colocates the setup of astra with all tree-sitter community plugins (below is an example of my setup). I am eventually hoping to get submit the plugin to tree-sitter.
 
 ```lua
-vim.filetype.add({ extension = { astra = "astra" } })
+return { -- Highlight, edit, and navigate code
+  'nvim-treesitter/nvim-treesitter',
+  build = ':TSUpdate',
+  main = 'nvim-treesitter.configs', -- Sets main module to use for opts
 
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-
-parser_config.astra = {
-  install_info = {
-    url = "/User/Name/path/to/local/installation",
-    files = { "src/parser.c" },
+  -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+  opts = {
+    ensure_installed = { 'astra', 'bash', 'c', 'diff', 'html', 'lua', 'go', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+    -- Autoinstall languages that are not installed
+    auto_install = true,
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = { 'ruby' },
+    },
+    indent = { enable = true, disable = { 'ruby' } },
   },
-  filetype = "astra",
+
+  config = function()
+    vim.filetype.add { extension = { astra = 'astra' } }
+
+    local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+
+    parser_config['astra'] = {
+      install_info = {
+        url = '/User/Name/path/to/local/installation',
+        files = { 'src/parser.c' },
+      },
+      filetype = 'astra',
+    }
+
+    -- Place this in your main configuration file outside of Treesitter setup
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = 'astra',
+      callback = function()
+        vim.cmd 'TSEnable highlight'
+      end,
+    })
+  end,
 }
 ```
 
