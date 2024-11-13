@@ -37,7 +37,6 @@ return { -- Highlight, edit, and navigate code
       filetype = 'astra',
     }
 
-    -- Place this in your main configuration file outside of Treesitter setup
     vim.api.nvim_create_autocmd('FileType', {
       pattern = 'astra',
       callback = function()
